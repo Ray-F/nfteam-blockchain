@@ -12,6 +12,7 @@
     "start": "node dist/bin/www.js"
   },
   "dependencies": {
+    "@cennznet/api": "^1.4.0",
     "babel-plugin-add-module-exports": "^1.0.4",
     "colors": "^1.4.0",
     "cookie-parser": "~1.4.4",

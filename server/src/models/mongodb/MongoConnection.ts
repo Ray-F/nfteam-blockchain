@@ -5,10 +5,10 @@ const client = new MongoClient(Config.MONGODB_URI, { useNewUrlParser: true, useU
 
 client.connect(err => {
   if (err) {
-    throw new Error(err)
+    throw new Error(err.message)
   } else {
     console.log("SERVER_LOG: Mongodb Connected")
   }
 });
 
-module.exports = client;
+export default client;

@@ -1,4 +1,7 @@
 import { Router } from 'express';
+import request from './RequestRoute';
+import address from './AddressRoute';
+import gallery from './GalleryRoute';
 
 import defaultController from '../controllers/DefaultController';
 
@@ -7,7 +10,7 @@ import cennznet from '../models/cennz/CennzService';
 const router = Router();
 
 router.use('/api/request', request);
-router.use('/api/adress', address);
+router.use('/api/address', address);
 router.use('/api/gallery', gallery);
 
 router.get('/hello', defaultController.helloWorld);

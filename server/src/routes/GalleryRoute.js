@@ -1,5 +1,6 @@
 import { Router } from "express";
 import cennznet from "../models/cennz/CennzService";
+import Approval from "../models/Approval";
 
 const router = Router();
 
@@ -13,30 +14,39 @@ router.get("/test", async (req, res, next) => {
 
 router.get("/", async (req, res, next) => {
   const apiClient = await cennznet.createClient();
-  const chain = await cennznet.getClientDetails(apiClient).chain;
-
-  const collectionId = req.body.collectionId;
 
   const tokenInfos = await apiClient.derive.nft.tokenInfoForCollection(0);
 
   let dict = {};
-  let approvals = [];
   tokenInfos?.map(({ tokenId, attributes, owner }) => {
     const { collectionId, seriesId, serialNumber } = tokenId;
     const id = `${collectionId.toString()}_${seriesId.toString()}_${serialNumber.toString()}`;
     const { ipfsURL, creator, timestamp } = attributes;
 
-    // id, ipfsURL, ownerAdress, VerifiedBy = [], timestamp
-    const creators = dict[ipfsURL + owner];
+    // tokenId, timestamp, ipfsURL, ownerAdress, VerifiedBy = []
+    const creators = dict[ipfsURL + "_" + owner][0];
     if (creators) {
       creators.push(creator);
     } else {
-      dict[ipfsURL + owner] = [creator];
+      dict[ipfsURL + "_" + owner] = [[creator], id, timestamp];
     }
   });
-  // for (key in dict) {
-  //   approvals.push(new Approval());
-  // }
+
+  let approvals = [];
+  for (key in dict) {
+    const keyInfo = key.split("_");
+    approvals.push(
+      new Approval(
+        dict[key][1],
+        dict[key][2],
+        keyInfo[0],
+        keyInfo[1],
+        dict[key][0]
+      )
+    );
+  }
+
+  res.json(approvals);
 });
 
 export default router;

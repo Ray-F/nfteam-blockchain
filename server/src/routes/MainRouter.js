@@ -6,6 +6,10 @@ import cennznet from '../models/cennz/CennzService';
 
 const router = Router();
 
+router.use('/api/request', request);
+router.use('/api/adress', address);
+router.use('/api/gallery', gallery);
+
 router.get('/hello', defaultController.helloWorld);
 
 
@@ -34,4 +38,4 @@ router.use('/api', (req, res) => {
 });
 
 
-module.exports = router;
+export default router;

@@ -27,10 +27,17 @@ router.post('/', async (req, res, next) => {
 });
 
 /**
- * TODO: Route for updating the approval state of a `VerificationRequest`.
+ * Route for updating the approval state of a `VerificationRequest`.
  */
 router.put('/', async (req, res, next) => {
-  console.log();
+  let verificationRequest = new VerificationRequest(req.body.id,
+                                                    req.body.timestamp,
+                                                    req.body.ipfsUrl,
+                                                    req.body.fromAddress,
+                                                    req.body.toAddresses,
+                                                    req.body.isApproved)
+  await mongoRepo.saveRequest(verificationRequest);
+  res.status(200).send();
 });
 
 export default router;

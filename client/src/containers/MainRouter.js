@@ -8,8 +8,6 @@ import IndexPage from "./pages/IndexPage";
 const useStyles = makeStyles(() => ({
   app: {
     height: "100vh",
-    width: "100vw",
-    overflowX: "hidden",
   },
 }));
 

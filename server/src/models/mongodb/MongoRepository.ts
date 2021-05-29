@@ -1,11 +1,11 @@
-import mongoClient from './MongoConnection';
+import mongoService from './MongoService';
 import config from '../../utils/Config';
 import VerificationRequest from '../VerificationRequest';
 import { Collection } from 'mongodb';
 
 
 const getRequestsCollection = (): Collection => {
-  return mongoClient.db(config.DB_NAME).collection("requests");
+  return mongoService.db(config.DB_NAME).collection("requests");
 }
 
 /**

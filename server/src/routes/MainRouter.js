@@ -2,9 +2,20 @@ import { Router } from 'express';
 
 import defaultController from '../controllers/DefaultController';
 
+import cennznet from '../models/cennz/CennzService';
+
 const router = Router();
 
 router.get('/hello', defaultController.helloWorld);
+
+
+/**
+ * Test example of how to use the CennzNet api client.
+ */
+router.get('/test', async(req, res, next) => {
+  const apiClient = await cennznet.createClient();
+  res.json((await cennznet.getClientDetails(apiClient)).chain);
+});
 
 /*
  * To use another controller, use:

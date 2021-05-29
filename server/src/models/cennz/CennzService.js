@@ -2,7 +2,6 @@ import { Api } from '@cennznet/api';
 
 const NIKAU_WS = 'wss://nikau.centrality.me/public/ws';
 
-
 /**
  * Creates an API client to access CennzNet services.
  */
@@ -10,7 +9,7 @@ async function createClient() {
   // Create the API and wait until ready
   const api = await Api.create({ provider: NIKAU_WS });
 
-  console.log(`[SERVER] CennzNet connected.`);
+  console.log('[SERVER] CennzNet connected');
 
   return api;
 }
@@ -27,8 +26,8 @@ async function getClientDetails(client) {
   return {
     chain: values[0],
     name: values[1],
-    version: values[2]
-  }
+    version: values[2],
+  };
 }
 
 export default {

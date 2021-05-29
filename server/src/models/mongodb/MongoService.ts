@@ -7,7 +7,7 @@ client.connect(err => {
   if (err) {
     throw new Error(err.message)
   } else {
-    console.log("SERVER_LOG: Mongodb Connected")
+    console.log("[Server] MongoDB connected")
   }
 });
 

@@ -2,44 +2,26 @@ import { Router } from 'express';
 import request from './RequestRoute';
 import address from './AddressRoute';
 import gallery from './GalleryRoute';
-
-import defaultController from '../controllers/DefaultController';
-
-import cennznet from '../models/cennz/CennzService';
-import mongoRepo from '../models/mongodb/MongoRepository';
+import test from './TestRoute';
 
 const router = Router();
 
+// Route for managing VerificationRequests
 router.use('/api/request', request);
+
+// Route for managing Addresses
 router.use('/api/address', address);
+
+// Route for managing the available NFT gallery of publicly verified information
 router.use('/api/gallery', gallery);
 
-router.get('/hello', defaultController.helloWorld);
-
-
-/**
- * Test example of how to use the CennzNet api client.
- */
-router.get('/test', async(req, res, next) => {
-  const number = await mongoRepo.getAllRequests();
-  res.json(number);
-});
+// Route for resetting data and testing API endpoints
+router.use('/test', test);
 
 /*
  * To use another controller, use:
  * import controllerName from '../controllers/<ControllerName>';
  * router.get|put|post|delete|use('/<path-name>', <controllerName>.<controllerMethod)
  */
-
-router.use('/api', (req, res) => {
-  res.send(`
-    <h2>Express API</h2>
-    <p>
-      You have reached the express API.
-      Email rf.raymondfeng@gmail.com for any questions on usage.
-    </p>
-  `);
-});
-
 
 export default router;

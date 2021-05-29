@@ -4,6 +4,9 @@ import Approval from '../models/Approval';
 
 const router = Router();
 
+// TODD potentially need to be changed or stored in .env
+const collectionId = 66;
+
 /**
  * Test example of how to use the CennzNet api client.
  */
@@ -15,25 +18,30 @@ router.get('/test', async (req, res, next) => {
 router.get('/', async (req, res, next) => {
   const apiClient = await cennznet.createClient();
 
-  const tokenInfos = await apiClient.derive.nft.tokenInfoForCollection(0);
+  const tokenInfos = await apiClient.derive.nft.tokenInfoForCollection(
+    collectionId
+  );
 
   let dict = {};
-  tokenInfos?.map(({ tokenId, attributes, owner }) => {
+  tokenInfos?.forEach(({ tokenId, attributes, owner }) => {
     const { collectionId, seriesId, serialNumber } = tokenId;
     const id = `${collectionId.toString()}_${seriesId.toString()}_${serialNumber.toString()}`;
-    const { ipfsURL, creator, timestamp } = attributes;
+    const [Url, Text, Timestamp] = attributes;
 
-    // tokenId, timestamp, ipfsURL, ownerAdress, VerifiedBy = []
-    const creators = dict[ipfsURL + '_' + owner][0];
-    if (creators) {
-      creators.push(creator);
+    const ipfsURL = Url.asUrl.toString();
+    const creator = Text.asText.toString();
+    const timestamp = Timestamp.asTimestamp.toString();
+
+    const entry = dict[ipfsURL + '_' + owner];
+    if (entry) {
+      if (!entry[0].includes(creator)) entry[0].push(creator);
     } else {
       dict[ipfsURL + '_' + owner] = [[creator], id, timestamp];
     }
   });
 
   let approvals = [];
-  for (key in dict) {
+  for (let key in dict) {
     const keyInfo = key.split('_');
     approvals.push(
       new Approval(

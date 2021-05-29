@@ -11,7 +11,7 @@ class VerificationRequest {
   public toAddresses: address[];
   public isApproved: boolean;
 
-  constructor(id: string = null, timestamp: number = null, ipfsUrl: url, fromAddress: string, toAddresses: string[], isApproved: boolean = null) {
+  constructor(id: string = null, timestamp: number = null, ipfsUrl: url, fromAddress: string, toAddresses: string[], isApproved: boolean) {
     this.id = id || new ObjectId().toString();
     this.timestamp = timestamp || new Date().valueOf();
     this.ipfsUrl = ipfsUrl;

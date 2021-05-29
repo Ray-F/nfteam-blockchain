@@ -13,7 +13,12 @@ const getRequestsCollection = (): Collection => {
  */
 const getAllRequests = async (): Promise<VerificationRequest[]> => {
   return (await getRequestsCollection().find({}).toArray())
-    .map((record) => new VerificationRequest(record._id, record.timestamp, record.ipfsUrl, record.fromAddress, record.toAddresses));
+    .map((record) => new VerificationRequest(record._id,
+                                             record.timestamp,
+                                             record.ipfsUrl,
+                                             record.fromAddress,
+                                             record.toAddresses,
+                                             record.isApproved));
 };
 
 /**

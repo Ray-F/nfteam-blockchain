@@ -11,7 +11,7 @@ const getRequestsCollection = (): Collection => {
 /**
  * Gets all verification requests from the DB and returns them.
  */
-const getAllApprovals = async (): Promise<VerificationRequest[]> => {
+const getAllRequests = async (): Promise<VerificationRequest[]> => {
   return (await getRequestsCollection().find({}).toArray())
     .map((record) => new VerificationRequest(record._id, record.timestamp, record.ipfsUrl, record.fromAddress, record.toAddresses));
 };
@@ -19,19 +19,26 @@ const getAllApprovals = async (): Promise<VerificationRequest[]> => {
 /**
  * Saves a `VerificationRequest` to the DB.
  */
-const saveApproval = async (approval: VerificationRequest): Promise<VerificationRequest> => {
-  const query = { _id: approval.id };
-  const update = { $set: approval };
+const saveRequest = async (request: VerificationRequest): Promise<VerificationRequest> => {
+  const query = { _id: request.id };
+  const update = { $set: request };
   const options = { upsert: true };
 
   await getRequestsCollection().updateOne(query, update, options);
 
-  return approval;
+  return request;
 };
 
 /**
  * Deletes an `VerificationRequest` from the DB.
  */
-const deleteApproval = async (approvalId: string) => {
-  await getRequestsCollection().deleteOne({ _id: approvalId });
+const deleteRequest = async (requestId: string) => {
+  await getRequestsCollection().deleteOne({ _id: requestId });
 };
+
+
+export default {
+  getAllRequests,
+  saveRequest,
+  deleteRequest
+}

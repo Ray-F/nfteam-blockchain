@@ -6,6 +6,7 @@ import gallery from './GalleryRoute';
 import defaultController from '../controllers/DefaultController';
 
 import cennznet from '../models/cennz/CennzService';
+import mongoRepo from '../models/mongodb/MongoRepository';
 
 const router = Router();
 
@@ -20,8 +21,8 @@ router.get('/hello', defaultController.helloWorld);
  * Test example of how to use the CennzNet api client.
  */
 router.get('/test', async(req, res, next) => {
-  const apiClient = await cennznet.createClient();
-  res.json((await cennznet.getClientDetails(apiClient)).chain);
+  const number = await mongoRepo.getAllRequests();
+  res.json(number);
 });
 
 /*

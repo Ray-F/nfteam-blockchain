@@ -4,16 +4,15 @@
   "license": "MIT",
   "private": false,
   "scripts": {
-    "dev": "nodemon -e js,json,ts --watch src --exec babel-node ./src/bin/www.js --extensions '.ts,.js'",
+    "dev": "nodemon -e js,json,ts --watch src --exec babel-node ./src/bin/www.js --extensions .ts,.js",
     "clean": "rm -rf dist",
     "prebuild": "yarn run clean",
-    "build": "babel src -d dist --extensions '.ts,.js'",
+    "build": "babel src -d dist --extensions .ts,.js",
     "prestart": "yarn run build",
     "start": "node dist/bin/www.js"
   },
   "dependencies": {
     "@cennznet/api": "^1.4.0",
-    "@polkadot/keyring": "^4.2.1",
     "babel-plugin-add-module-exports": "^1.0.4",
     "colors": "^1.4.0",
     "cookie-parser": "~1.4.4",
@@ -37,7 +36,6 @@
     "@babel/plugin-transform-typescript": "^7.13.0",
     "@babel/preset-env": "^7.13.10",
     "@babel/preset-typescript": "^7.13.0",
-    "@types/mongodb": "^3.6.17",
     "@types/node": "^14.14.33"
   },
   "babel": {

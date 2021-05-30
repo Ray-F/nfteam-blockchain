@@ -1,14 +1,15 @@
-import React from "react";
-import { BrowserRouter, Switch, Route } from "react-router-dom";
-import { Box } from "@material-ui/core";
-import Sidebar from "../components/Sidebar";
-import { makeStyles } from "@material-ui/core/styles";
-import IndexPage from "./pages/IndexPage";
+import React from 'react';
+import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import { Box } from '@material-ui/core';
+import Sidebar from '../components/Sidebar';
+import { makeStyles } from '@material-ui/core/styles';
+import IndexPage from './pages/IndexPage';
 import GalleryPage from './pages/GalleryPage';
+import MyuploadsPage from './pages/MyuploadsPage';
 
 const useStyles = makeStyles(() => ({
   app: {
-    height: "100vh",
+    height: '100vh',
   },
 }));
 
@@ -20,10 +21,11 @@ export default function MainRouter() {
       <Box display="flex" flexDirection="row" className={classes.app}>
         <Sidebar />
         <Switch>
-          <Route exact path={"/"} component={GalleryPage} />
+          <Route exact path={'/'} component={GalleryPage} />
+          <Route exact path={'/my_uploads'} component={MyuploadsPage} />
 
           {/* Default path if nothing matches */}
-          <Route path={"/"} component={IndexPage} />
+          <Route path={'/'} component={IndexPage} />
         </Switch>
       </Box>
     </BrowserRouter>

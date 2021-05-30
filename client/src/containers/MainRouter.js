@@ -5,6 +5,7 @@ import Sidebar from "../components/Sidebar";
 import { makeStyles } from "@material-ui/core/styles";
 import IndexPage from "./pages/IndexPage";
 import GalleryPage from './pages/GalleryPage';
+import UploadsPage from './pages/UploadsPage';
 
 const useStyles = makeStyles(() => ({
   app: {
@@ -21,6 +22,7 @@ export default function MainRouter() {
         <Sidebar />
         <Switch>
           <Route exact path={"/"} component={GalleryPage} />
+          <Route exact path={"/my_uploads"} component={UploadsPage} />
 
           {/* Default path if nothing matches */}
           <Route path={"/"} component={IndexPage} />

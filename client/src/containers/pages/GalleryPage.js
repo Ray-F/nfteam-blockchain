@@ -32,8 +32,8 @@ const GalleryPage = () => {
       <h1>Latest Videos</h1>
 
       <Grid container className={classes.videoContainer}>
-        {tokens.map((token) => (
-          <Grid item xs={12} md={4} className={classes.gridItem}>
+        {tokens.map((token, index) => (
+          <Grid item xs={12} md={4} className={classes.gridItem} key={index}>
             <div>
               <video className={classes.videoThmb} src={token.ipfsUrl} />
             </div>

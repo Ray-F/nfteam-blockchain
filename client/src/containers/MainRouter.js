@@ -4,6 +4,7 @@ import { Box } from "@material-ui/core";
 import Sidebar from "../components/Sidebar";
 import { makeStyles } from "@material-ui/core/styles";
 import IndexPage from "./pages/IndexPage";
+import GalleryPage from './pages/GalleryPage';
 
 const useStyles = makeStyles(() => ({
   app: {
@@ -19,7 +20,7 @@ export default function MainRouter() {
       <Box display="flex" flexDirection="row" className={classes.app}>
         <Sidebar />
         <Switch>
-          <Route exact path={"/"} component={IndexPage} />
+          <Route exact path={"/"} component={GalleryPage} />
 
           {/* Default path if nothing matches */}
           <Route path={"/"} component={IndexPage} />

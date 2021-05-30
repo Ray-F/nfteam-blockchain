@@ -1,0 +1,15 @@
+{
+  "address": "5CQA8hnzCFUtNpP3bLKFGq7iHdHEM1qxdWz8FjP3PuabWTaA",
+  "encoded": "dnR+aC2Pk2reltaA0pIISkYh0mcgNGExdqqizgR8/T8AgAAAAQAAAAgAAABvDxZKH7ENXSLgBWy/YIYsCMGrN0u7SQANCOE0Xkuvex7ZwkrgyS7KiZpfzfmc/5Ogmq07vV/ZPOApu0s2Zh0FtmLkOyZitbCBdZKN9tNCmcbyeM70hZ/22mjWjJmSuqkIG62hQQ+pC2qZXE2qxVYb3iQoCoQEOJH3JHBD4Qs+Xz8AlHbXtPo6GxhqstmL3svwmv2WPEi/aMZkR+Wd",
+  "encoding": {
+    "content": ["pkcs8", "sr25519"],
+    "type": ["scrypt", "xsalsa20-poly1305"],
+    "version": "3"
+  },
+  "meta": {
+    "genesisHash": "0x4d9337089848aa1aac7f6db23118c3844cfd99972c394521f62341ef1b657612",
+    "name": "NFTeam-Test",
+    "tags": [],
+    "whenCreated": 1622183564826
+  }
+}

@@ -1,8 +1,8 @@
-import React, { useEffect } from "react";
-import getAddress from "../../utils/getAddress";
-import { addressState } from "../../recoil/atoms";
-import { useRecoilState } from "recoil";
-import { makeStyles } from "@material-ui/core/styles";
+import React, { useEffect } from 'react';
+import getAddress from '../../utils/getAddress';
+import { addressState } from '../../recoil/atoms';
+import { useRecoilState } from 'recoil';
+import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme) => ({
   root: {

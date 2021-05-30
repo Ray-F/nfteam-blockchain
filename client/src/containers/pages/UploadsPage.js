@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { makeStyles } from '@material-ui/core';
+import getRequest from '../../utils/getRequest';
 
 const useStyles = makeStyles((theme) => ({
 
@@ -10,11 +11,12 @@ const UploadsPage = () => {
   const classes = useStyles();
 
   useEffect(() => {
-    fetch('/api/request', { method: 'GET' }).then(async (res) => {
-      const data = await res.json();
-
+    async function fetchData() {
+      const data = await getRequest();
+      console.log(data);
       setRequests(data);
-    });
+    }
+    fetchData();
   }, []);
 
   return (

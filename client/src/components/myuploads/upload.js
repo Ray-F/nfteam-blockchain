@@ -4,7 +4,7 @@ import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import ButtonBase from '@material-ui/core/ButtonBase';
-import ReactPlayer from 'react-player';
+import { Button } from '@material-ui/core';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -27,45 +27,37 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function Upload() {
+function Upload({ id, timestamp, video }) {
   const classes = useStyles();
   return (
-    <div>
-      <Paper className={classes.paper}>
-        <Grid container spacing={2}>
-          <Grid item>
-            <ButtonBase className={classes.image}>
-              <img
-                className={classes.img}
-                alt="complex"
-                src="/static/images/grid/complex.jpg"
-              />
-            </ButtonBase>
-          </Grid>
-          <Grid item xs={12} sm container>
-            <ReactPlayer url="https://www.youtube.com/watch?v=ysz5S6PUM-U" />
-            asdf
-            <Grid item xs container direction="column" spacing={2}>
-              <Grid item xs>
-                <Typography gutterBottom variant="subtitle1">
-                  Standard license
-                </Typography>
-                <Typography variant="body2" gutterBottom>
-                  Full resolution 1920x1080 • JPEG
-                </Typography>
-                <Typography variant="body2" color="textSecondary">
-                  ID: 1030114
-                </Typography>
-              </Grid>
-              <Grid item>
-                <Typography variant="body2" style={{ cursor: 'pointer' }}>
-                  Remove
-                </Typography>
-              </Grid>
-            </Grid>
+    <div style={{ margin: '30px 0' }}>
+      <Paper>
+        <Grid item container spacing={2}>
+          <div style={{ width: '100px', padding: '20px 30px' }}>
+            <video style={{ width: '100%' }} src={video} />
+          </div>
+          <Grid item xs container direction="column" spacing={2}>
             <Grid item>
-              <Typography variant="subtitle1">$19.00</Typography>
+              <Typography gutterBottom variant="subtitle1">
+                {id}
+              </Typography>
+
+              <Typography variant="body2" color="textSecondary">
+                {timestamp}
+              </Typography>
             </Grid>
+          </Grid>
+          <Button style={{ border: '1px solid purple', margin: '20px 0' }}>
+            {' '}
+            Play Video
+          </Button>
+          <Grid item>
+            <Typography
+              style={{ margin: 'auto 50px auto 0' }}
+              variant="subtitle1"
+            >
+              Verified
+            </Typography>
           </Grid>
         </Grid>
       </Paper>

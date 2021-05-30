@@ -5,6 +5,8 @@ import Box from '@material-ui/core/Box';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import ButtonBase from '@material-ui/core/ButtonBase';
+import Upload from '../../components/myuploads/upload';
+import { Button } from '@material-ui/core';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -51,29 +53,12 @@ function MyuploadsPage() {
       <Grid item container>
         <Typography variant="h4">Welcome Back!</Typography>
         <div style={{ flexGrow: 1 }}></div>
-        <button>asdf</button>
+        <Button style={{ border: '1px solid black' }}>Upload video</Button>
       </Grid>
 
-      <Paper>
-        <Grid item container spacing={2}>
-          <Grid item xs container direction="column" spacing={2}>
-            <Grid item>
-              <Typography gutterBottom variant="subtitle1">
-                Standard license
-              </Typography>
-              <Typography variant="body2" gutterBottom>
-                Full resolution 1920x1080 • JPEG
-              </Typography>
-              <Typography variant="body2" color="textSecondary">
-                ID: 1030114
-              </Typography>
-            </Grid>
-          </Grid>
-          <Grid item>
-            <Typography variant="subtitle1">$19.00</Typography>
-          </Grid>
-        </Grid>
-      </Paper>
+      {requests.map(({ id, date, ipfsUrl }) => (
+        <Upload id={id} date={date} video={ipfsUrl} />
+      ))}
     </Grid>
   );
 }
